@@ -1,0 +1,36 @@
+﻿@model Movie
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2>Edit Movie</h2>
+            <hr/>
+        </div>
+        <div asp-validation-summary="ModelOnly"></div>
+        <div class="mb-3">
+            <label>Id</label>
+            <input asp-for="Id" type="text" readonly class="form-control" />
+            <span asp-validation-for="Id" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label>Movie Name</label>
+            <input  asp-for="Name" type="text" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label>Director Name</label>
+            <input asp-for="Director" type="text" class="form-control" />
+            <span asp-validation-for="Director" class="text-danger"></span>
+        </div>
+       
+        <button type="submit" class="btn btn-primary">
+            update
+        </button>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+    <partial name="_ValidationScriptsPartial"/>
+    }
+}
