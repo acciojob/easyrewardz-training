@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using MVCTestApp.Models;
 using Newtonsoft.Json;
+using System.Net;
 
 namespace MVCTestApp.Controllers
 {
@@ -17,7 +18,7 @@ namespace MVCTestApp.Controllers
         /// This will return all list of movies
         /// </summary>
         /// <returns></returns>
-        [Route("Index")]
+        [Route("Ananya")]
         [HttpGet]
         public ActionResult Index()
         {
@@ -85,6 +86,7 @@ namespace MVCTestApp.Controllers
         public ActionResult Edit(int id )
         {
             Movie movie=movies.FirstOrDefault(x => x.Id == id);
+
             return View(movie);
         }
 
@@ -112,18 +114,12 @@ namespace MVCTestApp.Controllers
 
         // POST: MoviesController1/Delete/5
 
-        [HttpDelete]
         [Route("Delete/{id}")]
         public ActionResult Delete(int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            Movie oldItem = movies.FirstOrDefault(x => x.Id == id);
+            movies.Remove(oldItem);
+            return View("Index", new MyViewModel() { Movies = movies });
         }
     }
 }
