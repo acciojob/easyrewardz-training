@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MVCTestApp.Models;
 using System.Diagnostics;
@@ -16,6 +17,7 @@ namespace MVCTestApp.Controllers
         [Route("")]
         [Route("Home")]
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
